@@ -1,6 +1,6 @@
 # ros2_pca9685
 
-File structure was changed from original github [creator]([https://github.com/stevej52/ros2_pca9685]) as the package would not build correctly
+File structure was changed from original github [creator]([url](https://github.com/stevej52/ros2_pca9685)) as the package would not build correctly
 
 ROS2 Package to convert /cmd_vel topic to PWM signals using a PCA9685
 
