@@ -1,4 +1,7 @@
 # ros2_pca9685
+
+File structure was changed from original github [creator]([url](https://github.com/stevej52/ros2_pca9685)) as the package would not build correctly
+
 ROS2 Package to convert /cmd_vel topic to PWM signals using a PCA9685
 
 With only this package and the ROS2 teleop_twist_joy package you can control ESC's and servos with a joystick or gamepad using ROS2.
