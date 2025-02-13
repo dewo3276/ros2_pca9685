@@ -49,13 +49,15 @@ maxthr=135
 minthr= 10
 thrinit = 20
 strinit = 100
+pinSTR = 15
+pinTHR = 14
 
 print("Initializing Propulsion System")
-kit.servo[0].angle = thrinit
+kit.servo[pinTHR].angle = thrinit
 time.sleep(1)
 
 print("Initializing Steering System")
-kit.servo[1].angle = strinit
+kit.servo[pinSTR].angle = strinit
 
 bs1=180-thrinit
 kit.servo[2].angle = bs1
@@ -124,9 +126,9 @@ class MinimalSubscriber(Node):
         
 def move_robot(thrnum,strnum):
     print("Moving Robot:  Throttle="+str(thrnum)+" ,  Steering="+str(strnum))
-    kit.servo[0].angle = thrnum
+    kit.servo[pinTHR].angle = thrnum
 
-    kit.servo[1].angle = strnum
+    kit.servo[pinSTR].angle = strnum
     if strnum>strinit:
         bs1=strinit-(strnum-strinit)
     else:
