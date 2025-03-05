@@ -26,6 +26,7 @@ from adafruit_servokit import ServoKit
 import serial
 import board
 import busio
+#import signal
 
 global thrinit, strinit, maxr, minl, maxthr, minthr
 
@@ -43,11 +44,11 @@ print("Initializing IO System - freq")
 pca.frequency = 100
 
 
-maxr=170
+maxr=100
 minl=30
-maxthr=135
-minthr= 10
-thrinit = 20
+maxthr=100
+minthr= 75
+thrinit = 90
 strinit = 100
 pinSTR = 15
 pinTHR = 14
@@ -75,9 +76,10 @@ class MinimalSubscriber(Node):
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning
+        #signal.signal(signal.SIGINT, self.shutdown_handler)
 
     def listener_callback(self, msg):
-        throttle=msg.linear.x
+        throttle=-msg.linear.x
         steering=msg.angular.z
   #      self.get_logger().info('Y AXIS: "%s"' % yaxis)
  #       self.get_logger().info('X AXIS: "%s"' % xaxis)
@@ -116,7 +118,8 @@ class MinimalSubscriber(Node):
             newthrvalue = minthr 
 
         move_robot(newthrvalue, newstrvalue)
-        
+
+       
     def convertscales(oldvalue, oldmax, oldmin, newmax, newmin):
         oldrange = (oldmax - oldmin)  
         newrange = (newmax - newmin)  
